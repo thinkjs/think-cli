@@ -144,6 +144,45 @@ The above command generates the model at `src/home/model/user.js`
 
 As with controller, `module-name` is optional and can only be used in multi-module projects
 
+Notice: If you are upgraded from an old version of think-cli, you may encounter an error when you try to create a model like below:
+
+```
+thinkjs model testModel
+
+
+/usr/local/lib/node_modules/think-cli/bin/thinkjs-model:61
+const context = Object.assign(thinkjsInfo.metadata, argv, {
+                                         ^
+
+TypeError: Cannot read property 'metadata' of undefined
+    at Object.<anonymous> (/usr/local/lib/node_modules/think-cli/bin/thinkjs-model:61:42)
+```
+As your project is created before thus the package.json dont have the "thinkjs" field that we need the init info of how creating this project. So you can create a new project anywhere and copy the "thinkjs" field of the new package.json file into this project's package.json
+
+```
+thinkjs new tmpProject
+cd tmpProject
+cat package.json
+
+{ 
+    ...
+
+    "thinkjs": {
+        "metadata": {
+        "name": "tmpProject",
+        "description": "application created by thinkjs",
+        "author": "*** <email>",
+        "babel": true
+    },
+    "projectName": "tmpProject",
+    "templateName": "/usr/local/lib/node_modules/think-cli/default_template",
+    "cacheTemplatePath": "/Users/***/.think-templates/-usr-local-lib-node_modules-think-cli-default_template",
+    "clone": false,
+    "isMultiModule": false
+  }
+}
+```
+
 ## middleware
 
 **Usage:**
