@@ -39,7 +39,7 @@ const packageJSON = require(packageJSONPath)
 const templateInfo = {
   projectName: packageJSON.name || path.relative('../', process.cwd()),
   templateName: 'think-template/standard',
-  cacheTemplatePath: path.join(os.homedir(), '.think-templates/standard'),
+  cacheTemplatePath: path.join(os.tmpdir(), '.think-templates/standard'),
   clone: false,
   isMultiModule
 }
